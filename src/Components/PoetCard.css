@@ -1,0 +1,25 @@
+.poet-card{
+    width: 220px; /* 3 cards, 2 gaps of 20px */
+    height: 300px;
+    background-size: cover; /*have image fit to container*/
+    background-position: center;
+    transition: transform 0.2s ease-in-out;
+    box-sizing: border-box;
+}
+
+.poet-card:hover {
+    transform: scale(1.1);
+    text-shadow: 0 0 4px rgba(255, 255, 255, 0.4);
+}
+
+.poet-name{
+    color: black;  
+    font-size: 0.4rem;
+    writing-mode: vertical-rl; /* vertical from top to bottom, right to left */
+    text-orientation: upright;
+    line-height: 1rem;  
+    letter-spacing: -10px;
+    background-color: white;
+    padding:10px;
+    text-decoration: none;     
+}
