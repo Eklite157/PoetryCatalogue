@@ -1,6 +1,9 @@
-import { useState, useEffect } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 
-const useFavorites = () => {
+//to sync favorite states across all omponents
+const FavoritesContext = createContext();
+
+export function FavoritesProvider ({children}) {
 
     //localStorage only accepts strings as values
     //upon initial render, access data from localStorage if available and use as state
@@ -28,9 +31,27 @@ const useFavorites = () => {
         return favorites.some(p => p.id === poemId);
     };
 
-    //export as an object with the list, and the three functions
-    return { favorites, addFavorite, removeFavorite, isFavorite };
+    const toggleFavorite = (poem) => {
+        if (isFavorite(poem.id)) {
+          removeFavorite(poem.id);
+        } else {
+          addFavorite(poem);
+        }
+      };
 
+    //export as an object with the list, and the three functions
+    return (
+
+        <FavoritesContext.Provider value = {{ favorites, addFavorite, removeFavorite, isFavorite, toggleFavorite }}>
+            {children}
+        </FavoritesContext.Provider>
+    )
 }
 
+//custom hook so we don't have to write 'useContext(FavoritesContext)' every time it's used and can just useFavorites
+function useFavorites() {
+    return useContext(FavoritesContext);
+};
+
 export default useFavorites;
+

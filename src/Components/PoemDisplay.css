@@ -34,9 +34,16 @@
 .favorite-button {
     width:150px;
     height:30px;
-    padding:auto 5px;
     font-size:0.7rem;
     font-family:'Inknut Antiqua';
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.favorite-button i{
+    font-family:'Times New Roman';
+    font-size:1rem;
 }
 
 .close-button {
@@ -91,5 +98,10 @@
     font-size:0.7rem;
     font-family:'Inknut Antiqua';
     cursor:pointer;
+}
+
+.controls{
+    display:flex;
+    gap:20px;
 }
 

@@ -5,6 +5,7 @@ import HomePage from './Pages/HomePage';
 import FavoritesPage from './Pages/FavoritesPage';
 import ExplorePage from './Pages/ExplorePage';
 import PoetPage from './Pages/PoetPage'; 
+import { FavoritesProvider } from './Hooks/useFavorites';
 
 //keep poems list state centralized in App.jsx and do GET call here so poems can be used across multiple pages
 //by passing poems and setPoems down as prop
@@ -40,7 +41,8 @@ function App() {
     }, []);
 
     return(
-    <BrowserRouter>
+        <FavoritesProvider>
+        <BrowserRouter>
         <Routes>
             <Route  path = "/" 
                     element = {<HomePage/>}/>
@@ -57,7 +59,8 @@ function App() {
                     element = {<PoetPage poems = {poems}/>}/>
                     
         </Routes>
-    </BrowserRouter>
+        </BrowserRouter>
+        </FavoritesProvider>
     )
 };
 

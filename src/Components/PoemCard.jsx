@@ -1,10 +1,20 @@
 import './PoemCard.css'
 import InkBranch from '../assets/InkBranch.png'
+import useFavorites from '../Hooks/useFavorites';
 
 //accepts a prop (which in this case is a json object)
 function PoemCard ({ poem, onClick }) {
+
+    //object destructure; assign isFavorite to the method from useFavorites with the same name
+    const { isFavorite } = useFavorites();
+
     return(
         <div className = "poem-card" onClick = {onClick} style={{ backgroundImage: `url(${InkBranch})`}}>
+
+            
+            {isFavorite(poem.id) && ( 
+                <i className="fas fa-bookmark saved-icon"></i>
+            )}
 
             <div className = "poemcard-info">
 

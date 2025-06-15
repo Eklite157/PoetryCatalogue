@@ -5,7 +5,7 @@ import useFavorites from '../Hooks/useFavorites' //like useState etc. but your o
 //take poem and onClose from ExplorePage as props
 function PoemDisplay ({ poem, onClose, onUpdate, onDelete, onAllowUpdateAndDelete = false }) {
 
-    const favoritesHook = useFavorites(); //useFavorites returns an object //CAN DO WITH OBJECT DESTRUCTRING BTW
+    const { isFavorite, removeFavorite, addFavorite } = useFavorites(); 
 
     //mark if a poem is in a "being edited" state
     const [isEditing, setIsEditing] = useState(false);
@@ -28,10 +28,10 @@ function PoemDisplay ({ poem, onClose, onUpdate, onDelete, onAllowUpdateAndDelet
 
     //add to favorites list inside; on the display
     const handleToggleFavorite = (poem) => {
-        if (favoritesHook.isFavorite(poem.id)) {
-            favoritesHook.removeFavorite(poem.id);
+        if (isFavorite(poem.id)) {
+            removeFavorite(poem.id);
         } else {
-            favoritesHook.addFavorite(poem)
+            addFavorite(poem)
         }
     }
 
@@ -62,7 +62,7 @@ function PoemDisplay ({ poem, onClose, onUpdate, onDelete, onAllowUpdateAndDelet
                         onClick = {onClose}>Close</button>
 
                 <button className = "favorite-button" onClick = {() => handleToggleFavorite(poem)}>
-                        {favoritesHook.isFavorite(poem.id) ? '★ Remove Favorite' : '☆ Add to Favorites'}
+                        {isFavorite(poem.id) ? '★ Remove Favorite' : '☆ Add to Favorites'}
                 </button>
                 </div>
 

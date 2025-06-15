@@ -12,7 +12,7 @@ function FavoritesPage () {
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedPoem, setSelectedPoem] = useState(null);
 
-    const favoritesHook = useFavorites(); // useFavorites returns an object //CAN DO WITH OBJECT DESTRUCTRING BTW
+    const { favorites } = useFavorites();
 
     return (
         <div className = "favorites-page">
@@ -35,11 +35,11 @@ function FavoritesPage () {
                 }/>
 
                 <div className = 'favorites-library'>
-                    {favoritesHook.favorites.length === 0 ? 
+                    {favorites.length === 0 ? 
                             (<p>No Favorites Yet</p>
                             ) : (
                                 //get the array of favorited poems and render them
-                                favoritesHook.favorites.map((p) => 
+                                favorites.map((p) => 
                                     <PoemCard poem = {p} onClick = {() => setSelectedPoem(p)}/>)
                                 )
                     }    

@@ -29,6 +29,8 @@ function AddPoemCard ( {isCreating, onClose, onSubmit} ) {
                         onClick = {onClose}> Close</button>
 
                 <div className = 'creation-screen-data'>
+
+                    <h1>Add New Poem:</h1>
                     
                     <input  className = "add-title" 
                             placeholder = "Title"
@@ -56,16 +58,14 @@ function AddPoemCard ( {isCreating, onClose, onSubmit} ) {
                                 value = {newPoem.content}
                                 onChange = {(e) => setNewPoem({...newPoem, content: e.target.value})}/>
 
-                </div>
+                    <button className = "add-button" onClick = {
+                        //Send newPoem data back up to handlePost
+                            () => onSubmit(newPoem)}>Add!
+                    </button>
 
-                <button onClick = {
-                    //Send newPoem data back up to handlePost
-                    () => onSubmit(newPoem)}>Add!
-                </button>
+                </div>
                 
             </div>
-
-            <button>Cancel</button>
 
         </div>
     )

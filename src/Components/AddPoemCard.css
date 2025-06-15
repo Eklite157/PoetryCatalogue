@@ -12,10 +12,26 @@
 
 .creation-screen {
     background-image: url('../assets/WaterTown.jpeg');
-    width:50vw;
-    height:50vh;
+    background-size: cover;
+    flex: 1; /* Makes it fill any available space in the parent*/
+    width:600px;
+    height:600px;
     padding:20px;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     background-repeat: no-repeat; 
+}
+
+.creation-screen h1{
+    font-family:'Inknut Antiqua';
+}
+
+.creation-screen-close-button{
+    position: absolute;
+    top:10px;
+    left:10px;
 }
 
 .creation-screen-data {
@@ -26,5 +42,4 @@
     border-radius:5px;
     gap:20px;
     box-shadow:0 4px 12px rgba(0,0,0,0.1);
-    position: relative;
 }

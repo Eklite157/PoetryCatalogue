@@ -4,9 +4,20 @@ import PoemDisplay from "../Components/PoemDisplay";
 import AddPoemCard from "../Components/AddPoemCard";
 import { Link } from 'react-router-dom';
 import { useState } from "react";
+import useFavorites from "../Hooks/useFavorites"
 
 //receives the poems list from App as a prop
 function ExplorePage ({ poems, setPoems }) {
+
+    const { addFavorite, removeFavorite, isFavorite } = useFavorites();
+
+    const handleToggleFavorite = (poem) => {
+        if (isFavorite(poem.id)) {
+            removeFavorite(poem.id);
+        } else {
+        addFavorite(poem);
+    }
+    };
 
     //for search feature
     const [searchTerm, setSearchTerm] = useState ("");
@@ -130,7 +141,10 @@ function ExplorePage ({ poems, setPoems }) {
                             )
                         
                             .map((p) => (
-                            <PoemCard key={p.id} poem={p} onClick = {() => setSelectedPoem(p)}/>
+                            <PoemCard   key={p.id} 
+                                        poem={p} 
+                                        onClick = {() => setSelectedPoem(p)}
+                                        onToggleFavorite = {() => handleToggleFavorite(p)}/>
                             ))}
                 </div>
 

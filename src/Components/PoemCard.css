@@ -6,11 +6,19 @@
     background-position: 40% center;
     transition: transform 0.2s ease-in-out;
     box-sizing: border-box;
+    position:relative;
 }
 
 .poem-card:hover {
     transform: scale(1.1);
     text-shadow: 0 0 4px rgba(255, 255, 255, 0.4);
+}
+
+.saved-icon{
+    position: absolute;
+    top:20px;
+    right:30px;
+    font-size:20px;
 }
 
 .poemcard-info h1,
