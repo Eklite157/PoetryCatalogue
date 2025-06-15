@@ -79,17 +79,25 @@
     align-items: center;
 }
 
-.poet-wheel {
-    width:80%;
-    display: flex;
-    justify-content: space-between; /*distributes items across*/
-    flex-wrap: wrap;/*allows wrapping if needed*/
-    gap: 20px; /* this adjusts between cards */
-    padding: 0 10%; /* outer margin on left and right */
-    box-sizing: border-box;
+.poet-wheel{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    gap:10px;
 }
 
-.poet-wheel a{
+.poet-wheel-data {
+    width:75%;
+    display: flex;
+    justify-content: space-between; /*distributes items across*/
+    overflow-x: scroll; /*allows horizontal scrolling if needed*/
+    scroll-snap-type: x mandatory;
+    gap: 20px;
+    box-sizing: border-box;
+
+}
+
+.poet-wheel-data a{
     text-decoration:none;
 }
 

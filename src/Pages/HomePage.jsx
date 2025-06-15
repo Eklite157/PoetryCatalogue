@@ -7,7 +7,6 @@ import PoetCard from '../Components/PoetCard';
 import { Link } from 'react-router-dom';
 
 
-
 function HomePage() {
 
     return (
@@ -32,7 +31,9 @@ function HomePage() {
 
                     <h1> The Collection:</h1>
 
-                    <div className = 'poet-wheel'>
+                    <div className = "poet-wheel">
+
+                    <div className = 'poet-wheel-data'>
                         <Link to = "/poet/LiBai" >
                             <PoetCard poetName = 'Li Bai' image = {LiBai}/>
                         </Link>
@@ -42,7 +43,14 @@ function HomePage() {
                         <Link to = "/poet/SuShi">
                             <PoetCard poetName = 'Su Shi' image = {SuShi}/>
                         </Link>
+                        <Link to = "/poet/SuShi">
+                            <PoetCard poetName = 'Su Shi' image = {SuShi}/>
+                        </Link>
                     </div>
+
+                    </div>
+
+                    <h1 className="scroll notification">Scrollable→</h1>
                 </div>
             </div>
     
