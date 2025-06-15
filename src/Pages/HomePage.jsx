@@ -1,6 +1,5 @@
 import './HomePage.css'
 import '../Components/PoetCard.css'
-import pavilionBackground from '../assets/HomePage.webp'
 import LiBai from '../assets/LiBai.jpg';
 import WangWei from '../assets/WangWei.jpg';
 import SuShi from '../assets/SuShi.jpg';
@@ -26,7 +25,7 @@ function HomePage() {
                     </div>
                 </div>
 
-                <img className = 'imgBackground' src = {pavilionBackground} alt = 'background'/>
+                <div className = 'imgBackground'></div>
 
 
                 <div className = "collection">

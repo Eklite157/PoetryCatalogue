@@ -1,16 +1,12 @@
 .modal-overlay-creation-screen {
     position:fixed;
-    width: 50vw;
-    height: 50vh;
     display:flex;
     justify-content:center;
     align-items: center;
+    top: 50px;        /* moves box 100px down from top */
+    left: 50%;         /* center horizontally */
+    transform: translateX(-50%); /* center exactly horizontally */
     z-index:1000; /*High z-index to sit above everything*/
-
-    display: flex;
-    justify-content: center;  /* center the popup horizontally */
-    align-items: center;      /* center the popup vertically */
-    z-index: 999;
 }
 
 
@@ -18,6 +14,8 @@
     background-image: url('../assets/WaterTown.jpeg');
     width:50vw;
     height:50vh;
+    padding:20px;
+    background-repeat: no-repeat; 
 }
 
 .creation-screen-data {

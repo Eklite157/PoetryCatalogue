@@ -52,7 +52,7 @@ function AddPoemCard ( {isCreating, onClose, onSubmit} ) {
                             onChange = {(e) => setNewPoem({...newPoem, dynasty: e.target.value})}/>
                             
                     <textarea   className = "add-content" 
-                                placeholder = "Verse"
+                                placeholder = "Verses"
                                 value = {newPoem.content}
                                 onChange = {(e) => setNewPoem({...newPoem, content: e.target.value})}/>
 

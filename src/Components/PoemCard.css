@@ -1,7 +1,9 @@
 .poem-card{
     width: 220px; /* 3 cards, 2 gaps of 20px */
     height: 300px;
-    background-color: aliceblue;
+    padding:10px;
+    background-size: cover; /*have image fit to container*/
+    background-position: 40% center;
     transition: transform 0.2s ease-in-out;
     box-sizing: border-box;
 }
@@ -11,8 +13,30 @@
     text-shadow: 0 0 4px rgba(255, 255, 255, 0.4);
 }
 
+.poemcard-info h1,
+.poemcard-info p{
+    width:80%;
+    white-space: nowrap;/*keep on one line*/
+    overflow:hidden; /*do not exceed container*/
+    text-overflow:ellipsis;/*add ellipses for text being too long*/
+}
+
 .poet-info{
     display:flex;
-    align-items: center;
-    gap:20px;
+    flex-direction: column;
+    gap:2px;
 }
+
+.poet-info p{
+    margin:0;
+    padding:0;
+}
+
+.poet-name-cn{
+    font-size: 1.4rem;
+}
+
+.poet-name-en{
+    font-size:1rem;
+}
+

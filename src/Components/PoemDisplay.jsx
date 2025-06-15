@@ -57,31 +57,47 @@ function PoemDisplay ({ poem, onClose, onUpdate, onDelete, onAllowUpdateAndDelet
         <div className = "modal-overlay">
             <div className = "modal-content">
                 
+                <div className = "quick-action">
                 <button className = "close-button" 
                         onClick = {onClose}>Close</button>
 
                 <button className = "favorite-button" onClick = {() => handleToggleFavorite(poem)}>
                         {favoritesHook.isFavorite(poem.id) ? '★ Remove Favorite' : '☆ Add to Favorites'}
                 </button>
+                </div>
 
 
                 {isEditing ? (
-                    <div>
+                    <div className = "editing-fields">
+
+                        <h1>In Poem-Editing Mode:</h1>
+
+                        <label htmlFor="title">Poem Title:</label>
                         <input  name = "title" 
                                 value = {editedPoem.title}
                                 onChange = {handleEdit}/>
+                        <label htmlFor="poet">Poet Name:</label>
                         <input  name = "poet" 
                                 value = {editedPoem.poet}
                                 onChange = {handleEdit}/>
+                        <label htmlFor="poet_en">English Romanization:</label>
+                        <input  name = "poet_en" 
+                                value = {editedPoem.poet_en}
+                                onChange = {handleEdit}/>
+                        <label htmlFor="dynasty">Dynasty:</label>
                         <input  name = "dynasty" 
                                 value = {editedPoem.dynasty || ""}
                                 onChange = {handleEdit}/>
+                        <label htmlFor="content">Verses:</label> 
                         <textarea   name = "content" 
                                     value = {editedPoem.content}
                                     onChange = {handleEdit}/>
 
-                        <button onClick = {handleSave}>Save</button>
-                        <button onClick = {() => setIsEditing(false)}>Cancel</button>
+                        <div className = "editing-buttons">
+                            <button className = "editing-button" onClick = {handleSave}>Save</button>
+                            <button className = "editing-button" onClick = {() => setIsEditing(false)}>Cancel</button>
+                        </div>
+                    
                         
                     </div>
                     
@@ -91,7 +107,7 @@ function PoemDisplay ({ poem, onClose, onUpdate, onDelete, onAllowUpdateAndDelet
                         <h1 className = "poem-title">{poem.title}</h1>
                         <h2 className = "poem-poet">{poem.poet}</h2>
                         <h2 className = "poem-dynasty">{poem.dynasty}</h2>
-                         <p className = "poem-content">{poem.content}</p>
+                        <p className = "poem-content">{poem.content}</p>
 
 
                         {onAllowUpdateAndDelete && (

@@ -1,27 +1,50 @@
 .modal-overlay{
     position:fixed;
-    width: 50vw;
-    height: 50vh;
     display:flex;
     justify-content:center;
     align-items: center;
+    top: 50px;        /* moves box 100px down from top */
+    left: 50%;         /* center horizontally */
+    transform: translateX(-50%); /* center exactly horizontally */
     z-index:1000; /*High z-index to sit above everything*/
 }
 
 .modal-content{
     background-color:blanchedalmond;
-    font-family: 'Inknut Antiqua';
+    width: 400px;
+    height: 600px;
+    font-family: 'Ma Zhan Sheng';
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+    overflow-y: auto;        /* enable vertical scroll if content exceeds height */
+    padding:20px;
     border-radius:5px;
     box-shadow:0 4px 12px rgba(0,0,0,0.1);
     position: relative;
 }
 
-.close-button {
+.quick-action{
+    width: 100%; /*make sure the container fills the space so justify-content works*/
+    display:flex;
+    justify-content: space-between; /*pushes nav bar to other end*/
+    align-items:center;
+}
+
+.favorite-button {
+    width:150px;
+    height:30px;
+    padding:auto 5px;
+    font-size:0.7rem;
     font-family:'Inknut Antiqua';
-    font-size: 1rem;
-    width:70px;
-    height:50px;
-    margin:10px;
+}
+
+.close-button {
+    width:50px;
+    height:30px;
+    padding:auto 5px;
+    font-size:0.7rem;
+    font-family:'Inknut Antiqua';
     cursor:pointer;
 }
 
@@ -32,3 +55,41 @@
 .poem-dynasty{
     font-size:1rem;
 }
+
+/*actual poem content*/
+.poem-body p {
+    width: 80%;
+    margin:0 auto; /*horizontal center*/
+    margin-top: 30px;
+    margin-bottom: 30px;
+    white-space: pre-line; /*render \n from json as visible line breaks*/
+    font-size: 1.4rem;
+}
+
+.editing-fields{
+    width:90%;
+    margin:20px;
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+}
+
+.editing-fields h1{
+    font-family:'Inknut Antiqua';
+    font-size: 1.4rem;
+}
+
+.editing-buttons{
+    display:flex;
+    gap:10px;
+}
+
+.editing-button{
+    width:70px;
+    height:30px;
+    padding:auto 5px;
+    font-size:0.7rem;
+    font-family:'Inknut Antiqua';
+    cursor:pointer;
+}
+
