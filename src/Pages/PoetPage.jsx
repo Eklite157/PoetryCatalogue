@@ -6,21 +6,12 @@ import { useState } from 'react';
 
 function PoetPage ({ poems }) {
 
-
     const [selectedPoem, setSelectedPoem] = useState(null);
 
     // /poet/:poetName was dynamic URL routing, poetName was marked as a parameter
     //change to Javascript object
-    const { poetName } = useParams(); //will lose space
-
-    // Map slug to actual name in DB
-    const slugToNameMap = {
-      LiBai: "Li Bai",
-      WangWei: "Wang Wei",
-      SuShi: "Su Shi",
-    };
-
-    const actualName = slugToNameMap[poetName];
+    const { poetName } = useParams(); 
+    const actualName = decodeURIComponent(poetName);
 
     const filteredPoems = poems.filter(p => p.poet_en === actualName);
 

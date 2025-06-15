@@ -1,13 +1,19 @@
 import './HomePage.css'
 import '../Components/PoetCard.css'
-import LiBai from '../assets/LiBai.jpg';
-import WangWei from '../assets/WangWei.jpg';
-import SuShi from '../assets/SuShi.jpg';
+import MountainSun from '../assets/MountainSun.jpg';
+import MountainStream from '../assets/MountainStream.jpg';
+import MountainBlossoms from '../assets/MountainBlossoms.jpg';
 import PoetCard from '../Components/PoetCard';
 import { Link } from 'react-router-dom';
 
 
-function HomePage() {
+function HomePage({poems}) {
+
+    //poet image rotation array
+    const poetImages = [MountainSun, MountainBlossoms, MountainStream];
+
+    //array of distinct poets by spreading Set into array
+    const uniquePoets = [...new Set(poems.map(poem => poem.poet_en))];
 
     return (
         <div className = 'homepage'>
@@ -34,18 +40,18 @@ function HomePage() {
                     <div className = "poet-wheel">
 
                     <div className = 'poet-wheel-data'>
-                        <Link to = "/poet/LiBai" >
-                            <PoetCard poetName = 'Li Bai' image = {LiBai}/>
-                        </Link>
-                        <Link to = "/poet/WangWei">
-                            <PoetCard poetName = 'Wang Wei' image = {WangWei}/>
-                        </Link>
-                        <Link to = "/poet/SuShi">
-                            <PoetCard poetName = 'Su Shi' image = {SuShi}/>
-                        </Link>
-                        <Link to = "/poet/SuShi">
-                            <PoetCard poetName = 'Su Shi' image = {SuShi}/>
-                        </Link>
+
+                        {uniquePoets.map((poetName, index) => {
+
+                            const image = poetImages[index % poetImages.length]; //rotate images
+
+                            return (
+                                <Link key = {poetName} to = {`/poet/${encodeURIComponent(poetName)}`}>
+                                    <PoetCard poetName = {poetName} image = {image}/>
+                                </Link>
+                            )
+                        })};
+
                     </div>
 
                     </div>

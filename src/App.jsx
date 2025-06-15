@@ -45,7 +45,8 @@ function App() {
         <BrowserRouter>
         <Routes>
             <Route  path = "/" 
-                    element = {<HomePage/>}/>
+                    element = {<HomePage 
+                                    poems={poems}/>}/>
 
             <Route  path = "/favorites" 
                     element = {<FavoritesPage/>}/>
