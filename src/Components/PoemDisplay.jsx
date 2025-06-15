@@ -1,4 +1,5 @@
 import './PoemDisplay.css'
+import MoonlightBoatRide from '../assets/Moonlight.webp'
 import { useState, useEffect } from 'react';
 import useFavorites from '../Hooks/useFavorites' //like useState etc. but your own custom hook!
 
@@ -55,19 +56,22 @@ function PoemDisplay ({ poem, onClose, onUpdate, onDelete, onAllowUpdateAndDelet
     //modal-overlay refers to the for the temporary pop-up feature over the app
     return (
         <div className = "modal-overlay">
+
             <div className = "modal-content">
                 
-                <div className = "quick-action">
-                <button className = "close-button" 
+                <img className = "decorative-background" src = {MoonlightBoatRide}/>
+
+                    <div className = "quick-action">
+                        <button className = "close-button" 
                         onClick = {onClose}>Close</button>
 
-                <button className = "favorite-button" onClick = {() => handleToggleFavorite(poem)}>
-                        {isFavorite(poem.id) ? '★ Remove Favorite' : '☆ Add to Favorites'}
-                </button>
-                </div>
+                        <button className = "favorite-button" onClick = {() => handleToggleFavorite(poem)}>
+                            {isFavorite(poem.id) ? '★ Remove Favorite' : '☆ Add to Favorites'}
+                        </button>
+                    </div>
 
-
-                {isEditing ? (
+                    <div className = 'poem-display'>
+                    {isEditing ? (
                     <div className = "editing-fields">
 
                         <h1>In Poem-Editing Mode:</h1>
@@ -97,11 +101,11 @@ function PoemDisplay ({ poem, onClose, onUpdate, onDelete, onAllowUpdateAndDelet
                             <button className = "editing-button" onClick = {handleSave}>Save</button>
                             <button className = "editing-button" onClick = {() => setIsEditing(false)}>Cancel</button>
                         </div>
-                    
+
                         
                     </div>
                     
-                ): (
+                    ): (
 
                     <div className = "poem-body">
                         <h1 className = "poem-title">{poem.title}</h1>
@@ -129,7 +133,9 @@ function PoemDisplay ({ poem, onClose, onUpdate, onDelete, onAllowUpdateAndDelet
                         }
                      </div>
                      
-                )}
+                    )}
+
+                </div>
 
             </div>
         </div>
