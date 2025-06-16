@@ -33,6 +33,15 @@
     z-index:0;
 }
 
+.decorative-frame{
+    margin:0;
+    height:20%;
+    top: 130px;
+    right: 20px;
+    position:absolute;
+    z-index:0;
+}
+
 .quick-action{
     width: 100%; /*make sure the container fills the space so justify-content works*/
     display:flex;

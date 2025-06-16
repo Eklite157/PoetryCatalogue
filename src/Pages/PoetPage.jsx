@@ -23,13 +23,13 @@ function PoetPage ({ poems }) {
 
             <h1 className = 'poet-text'>{actualName}</h1> 
 
-            <div className = 'button-bar'> 
+            <div className = 'poet-button-bar'> 
                 <Link to= "/">Home</Link>
                   <div className = "vertical-line">|</div>
                 <Link to= "/favorites">Favorites</Link>
                   <div className = "vertical-line">|</div>
                 <Link to= "/explore">Explore</Link>
-            </div>
+          </div>
 
           </div>
 

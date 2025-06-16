@@ -39,7 +39,7 @@ function HomePage({poems}) {
 
                     <div className = "poet-wheel">
 
-                    <div className = 'poet-wheel-data'>
+                        <div className = 'poet-wheel-data'>
 
                         {uniquePoets.map((poetName, index) => {
 
@@ -52,7 +52,7 @@ function HomePage({poems}) {
                             )
                         })};
 
-                    </div>
+                        </div>
 
                     </div>
 

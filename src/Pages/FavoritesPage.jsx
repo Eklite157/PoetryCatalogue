@@ -19,7 +19,7 @@ function FavoritesPage () {
             <div className = "favorites-content">
                 <div className = 'favorites-title-bar'>
                     <h1 className = 'favorites-text'>Favorites</h1> 
-                    <div className = 'button-bar'> 
+                    <div className = 'favorites-button-bar'> 
                         <Link to= "/">Home</Link>
                         <div className = "vertical-line">|</div>
                         <Link to= "/favorites">Favorites</Link>

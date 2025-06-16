@@ -1,7 +1,8 @@
 import './PoemDisplay.css'
-import MoonlightBoatRide from '../assets/Moonlight.webp'
+import MoonlightBoatRide from '../assets/MoonlightBoatRide.jpeg'
 import { useState, useEffect } from 'react';
 import useFavorites from '../Hooks/useFavorites' //like useState etc. but your own custom hook!
+import Frame from '../assets/ChineseFrame.png'
 
 //take poem and onClose from ExplorePage as props
 function PoemDisplay ({ poem, onClose, onUpdate, onDelete, onAllowUpdateAndDelete = false }) {
@@ -60,6 +61,7 @@ function PoemDisplay ({ poem, onClose, onUpdate, onDelete, onAllowUpdateAndDelet
             <div className = "modal-content">
                 
                 <img className = "decorative-background" src = {MoonlightBoatRide}/>
+                <img className = "decorative-frame" src = {Frame}/>
 
                     <div className = "quick-action">
                         <button className = "close-button" 

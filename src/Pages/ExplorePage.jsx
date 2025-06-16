@@ -116,7 +116,7 @@ function ExplorePage ({ poems, setPoems }) {
             <div className = "explore-content">
                 <div className = 'explore-title-bar'>
                     <h1 className = 'explore-text'>Explore</h1>
-                    <div className = 'button-bar'> 
+                    <div className = 'explore-button-bar'> 
                         <Link to= "/">Home</Link>
                         <div className = "vertical-line">|</div>
                         <Link to= "/favorites">Favorites</Link>
