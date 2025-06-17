@@ -23,6 +23,19 @@ function ExplorePage ({ poems, setPoems }) {
     //for adding to database feature
     const [isCreating, setIsCreating] = useState(false);
 
+     //to temporarily store state of fields to be added
+     const [newPoem, setNewPoem] = useState({
+        title: '',
+        poet: '',
+        poet_en: '',
+        dynasty: '',
+        content:''
+    });
+
+
+    //for error messages
+    const [errorMessage, setErrorMessage] = useState("");
+
 
     //for romanized search (定風波 -> "ding feng bo")
     const poemsWithPinyin = poems.map(poem => ({
@@ -50,6 +63,12 @@ function ExplorePage ({ poems, setPoems }) {
         addFavorite(poem);
     }
     };
+
+    //handles errors
+    const showError = (msg) => {
+        setErrorMessage(msg);
+        setTimeout(() => setErrorMessage(""), 5000);
+    }
     
 
     //deletes poem from database
@@ -69,7 +88,8 @@ function ExplorePage ({ poems, setPoems }) {
             setSelectedPoem(null);
 
         } catch (error) {
-            console.error ("Delete failed:", error);
+            showError("Non-server error occurred.");
+            console.log("Delete failed:", error)
         }
     };
 
@@ -83,20 +103,23 @@ function ExplorePage ({ poems, setPoems }) {
                 headers: { 'Content-Type': 'application/json'},
                 body: JSON.stringify(editedPoem)
             })
-
-            //if successful, refresh and display new version in UI
-            if (response.ok) {
-                const updatedPoem = await response.json(); //convert returned response body JSON into Javascript object
-
-                //update local array of poems, replacing old poem with new and keeping index in array
-                setPoems(prev=>prev.map((p) => (p.id === updatedPoem.id ? updatedPoem : p)))
-                
-                //Displays updated poem automatically for user
-                setSelectedPoem(updatedPoem);
+            
+            if (!response.ok) {
+                const errorText = await response.text();  // like "Duplicate" or "Bad Request" from Springboot for null
+                showError(`Update failed: ${errorText}`)
+                return;
             }
 
+            const updatedPoem = await response.json(); //convert returned response body JSON into Javascript object
+
+            //update local array of poems, replacing old poem with new and keeping index in array
+            setPoems(prev=>prev.map((p) => (p.id === updatedPoem.id ? updatedPoem : p)))
+                
+            //Displays updated poem automatically for user
+            setSelectedPoem(updatedPoem);
+
         } catch (error) {
-            console.error("Update failed", error);
+            showError("Non-server error occurred.");
         }
     }
 
@@ -109,17 +132,26 @@ function ExplorePage ({ poems, setPoems }) {
                 headers: { 'Content-Type':'application/json'},
                 body:JSON.stringify(newPoem)
             })
-
-            const savedPoem = await response.json();
             
             if (!response.ok) {
-                const errorText = await response.text();  // like "Null or Duplicate"
-                alert(`Failed to save poem: ${errorText}`);
+                const errorText = await response.text();  // like "Duplicate"
+                showError(`Saving poem failed: ${errorText}`);
                 return;
             }
 
+            const savedPoem = await response.json();
+
             //notify user
             alert(`Saved at ${savedPoem.id}`);
+
+            //clear fields
+            setNewPoem({
+                title: '',
+                poet: '',
+                poet_en: '',
+                dynasty: '',
+                content: ''
+            });
 
             //re-render UI
             setPoems(prev => [...prev, newPoem]);
@@ -127,14 +159,14 @@ function ExplorePage ({ poems, setPoems }) {
             //close the AddPoem window
             setIsCreating(false);
 
-        } catch {
-            console.error('Failed to save poem', error)
+        } catch (error) {
+            showError("Non-server error occurred.");
         }
     }
 
 
     return (
-
+    
         <div className = "explore-page">
             <div className = "explore-content">
                 <div className = 'explore-title-bar'>
@@ -172,8 +204,29 @@ function ExplorePage ({ poems, setPoems }) {
 
                 
                 <AddPoemCard    isCreating = {isCreating} 
+                                newPoem = {newPoem}
+                                setNewPoem = {setNewPoem}
                                 onClose = {() => setIsCreating(false)}
                                 onSubmit = {handlePost}/>
+
+
+                {errorMessage && (
+                    <div style={{
+                        position: 'fixed',
+                        top: '20px',
+                        left: '50%',
+                        transform: 'translateX(-50%)',
+                        backgroundColor: '#e74c3c',
+                        color: 'white',
+                        padding: '10px 20px',
+                        borderRadius: '8px',
+                        zIndex: 1000,
+                        boxShadow: '0 2px 10px rgba(0,0,0,0.2)'
+                      }}>
+                        {errorMessage}
+                    </div>
+                )}
+            
 
             </div>
         </div>

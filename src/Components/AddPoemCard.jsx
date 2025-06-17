@@ -3,18 +3,7 @@ import { useState } from 'react';
 
 
 
-function AddPoemCard ( {isCreating, onClose, onSubmit} ) {
-
-
-    //to temporarily store state of fields to be added
-    const [newPoem, setNewPoem] = useState({
-        title: '',
-        poet: '',
-        poet_en: '',
-        dynasty: '',
-        content:''
-    });
-
+function AddPoemCard ( {isCreating, newPoem, setNewPoem, onClose, onSubmit} ) {
 
     if (!isCreating) return null;
 
@@ -33,17 +22,17 @@ function AddPoemCard ( {isCreating, onClose, onSubmit} ) {
                     <h1>Add New Poem:</h1>
                     
                     <input  className = "add-title" 
-                            placeholder = "Title"
+                            placeholder = "Title(*)"
                             value = {newPoem.title}
                             onChange = {(e) => setNewPoem({...newPoem, title: e.target.value})}/>
 
                     <input  className = "add-poet" 
-                            placeholder = "Poet"
+                            placeholder = "Poet(*)"
                             value = {newPoem.poet}
                             onChange = {(e) => setNewPoem({...newPoem, poet: e.target.value})}/>
 
                     <input  className = "add-poet_en" 
-                            placeholder = "Poet Romanization"
+                            placeholder = "Poet Romanization(*)"
                             value = {newPoem.poet_en}
                             onChange = {(e) => setNewPoem({...newPoem, poet_en: e.target.value})}/>
 
@@ -54,7 +43,7 @@ function AddPoemCard ( {isCreating, onClose, onSubmit} ) {
                             onChange = {(e) => setNewPoem({...newPoem, dynasty: e.target.value})}/>
                             
                     <textarea   className = "add-content" 
-                                placeholder = "Verses"
+                                placeholder = "Verses(*)"
                                 value = {newPoem.content}
                                 onChange = {(e) => setNewPoem({...newPoem, content: e.target.value})}/>
 
