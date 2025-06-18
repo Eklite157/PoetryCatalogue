@@ -22,7 +22,7 @@ function App() {
 
         const fetchPoems = async() => {
             try {
-                const response = await fetch("http://localhost:8080/api/v1/poem");
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/poem`);
 
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);

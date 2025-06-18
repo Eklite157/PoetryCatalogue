@@ -75,7 +75,7 @@ function ExplorePage ({ poems, setPoems }) {
     const handleDelete = async (id) => {
         try {
             //delete poem from database
-            await fetch(`http://localhost:8080/api/v1/poem/${id}`, {
+            await fetch(`${import.meta.env.VITE_API_URL}/api/v1/poem/${id}`, {
                 method:'DELETE'
             });
 
@@ -98,7 +98,7 @@ function ExplorePage ({ poems, setPoems }) {
     const handleUpdate = async (editedPoem)=> {
         try {
             //update poem in database
-            const response = await fetch(`http://localhost:8080/api/v1/poem/${editedPoem.id}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/poem/${editedPoem.id}`, {
                 method:'PUT',
                 headers: { 'Content-Type': 'application/json'},
                 body: JSON.stringify(editedPoem)
@@ -127,7 +127,7 @@ function ExplorePage ({ poems, setPoems }) {
     const handlePost = async(newPoem) => {
 
         try {
-            const response = await fetch('http://localhost:8080/api/v1/poem', {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/poem`, {
                 method:'POST',
                 headers: { 'Content-Type':'application/json'},
                 body:JSON.stringify(newPoem)
