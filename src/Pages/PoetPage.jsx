@@ -29,9 +29,11 @@ function PoetPage ({ poems }) {
                 <Link to= "/favorites">Favorites</Link>
                   <div className = "vertical-line">|</div>
                 <Link to= "/explore">Explore</Link>
-          </div>
+            </div>
 
           </div>
+
+          <p>Poems may be edited or deleted only on the Explore page ~</p>
 
           <div className = "poet-library">
 

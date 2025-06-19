@@ -28,6 +28,8 @@ function FavoritesPage () {
                     </div>
                 </div>
 
+                <p>Poems may be edited or deleted only on the Explore page ~</p>
+
                 <input  className = "favorites-search-bar" 
                         placeholder = "Search poem..."
                         value = {searchTerm}

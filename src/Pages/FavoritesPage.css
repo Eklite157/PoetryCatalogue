@@ -15,6 +15,12 @@
     box-sizing: border-box;
 }
 
+.favorites-content p{
+    font-family: 'Inknut Antiqua';
+    font-size: small;
+    font-style: italic;   
+}
+
 .favorites-title-bar{
     width:100%;
     height:10vh;
@@ -57,7 +63,8 @@
     color: #000;           /* Don't change color */
     transform: scale(1.1);
     text-shadow: 0 0 4px rgba(255, 255, 255, 0.4);
-  }
+}
+
 
 .favorites-search-bar{
     box-sizing: border-box;
