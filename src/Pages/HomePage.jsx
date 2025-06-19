@@ -50,7 +50,7 @@ function HomePage({poems}) {
                                     <PoetCard poetName = {poetName} image = {image}/>
                                 </Link>
                             )
-                        })};
+                        })}
 
                         </div>
 
