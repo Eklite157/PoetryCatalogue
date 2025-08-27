@@ -61,7 +61,6 @@ function PoemDisplay ({ poem, onClose, onUpdate, onDelete, onAllowUpdateAndDelet
             <div className = "modal-content">
                 
                 <img className = "decorative-background" src = {MoonlightBoatRide}/>
-                <img className = "decorative-frame" src = {Frame}/>
 
                     <div className = "quick-action">
                         <button className = "close-button" 
@@ -103,7 +102,7 @@ function PoemDisplay ({ poem, onClose, onUpdate, onDelete, onAllowUpdateAndDelet
                                     value = {editedPoem.translation}
                                     onChange = {handleEdit}/>
 
-                        <div className = "editing-buttons">
+                        <div className = "top-buttons">
                             <button className = "editing-button" onClick = {handleSave}>Save</button>
                             <button className = "editing-button" onClick = {() => setIsEditing(false)}>Cancel</button>
                         </div>
@@ -112,35 +111,50 @@ function PoemDisplay ({ poem, onClose, onUpdate, onDelete, onAllowUpdateAndDelet
                     </div>
                     
                     ): (
+                    
+                    <div className = "all-content">
 
                     <div className = "poem-body">
+
+                        <img className = "decorative-frame" src = {Frame}/>
 
                         <h1 className = "poem-title">{poem.title}</h1>
                         <h2 className = "poem-poet">{poem.poet}</h2>
                         <h2 className = "poem-dynasty">{poem.dynasty}</h2>
+
+                        <hr className="poem-separator" />
+
                         <p className = "poem-content">{poem.content}</p>
 
+                    </div>
+
+
+                    <div className = "bottom-buttons">
+
                         <div className = "features">
-                            {onAllowUpdateAndDelete && (
-                            <div className = "controls">
-                            <button className = "edit-button" 
-                                onClick = {() => {
-                                    setIsEditing(true)
-                                    //set fields with prop poem values upon render
-                                    setEditedPoem(poem)
-                                }}>
-                                Edit Poem
-                            </button>
+                            <div className = "edit-and-delete">
+                                {onAllowUpdateAndDelete && (
+                                <div className = "controls">
+                                <button className = "editing-button"
+                                    onClick = {() => {
+                                        setIsEditing(true)
+                                        //set fields with prop poem values upon render
+                                        setEditedPoem(poem)
+                                    }}>
+                                    Edit Poem
+                                </button>
                     
-                            <button className = "delete-button" onClick = {() => onDelete(poem.id)}>
-                                Delete Poem
-                            </button>
-                            </div>)
-                            }
+                                <button className = "editing-button" onClick = {() => onDelete(poem.id)}>
+                                    Delete Poem
+                                </button>
+
+                                </div>)
+                                }
+                            </div>
 
                             <div className = "translation">
                                 {poem.translation ? (
-                                <div>
+                                <div className = "translation-text">
                                     <h2>Translation</h2>
                                     <p>{poem.translation}</p>
                                 </div>
@@ -150,8 +164,9 @@ function PoemDisplay ({ poem, onClose, onUpdate, onDelete, onAllowUpdateAndDelet
                                 </button>
                                 )}
                             </div>
-                        </div>
+                            </div>
 
+                        </div>
                     </div>
                      
                     )}

@@ -11,8 +11,8 @@
 
 .modal-content{
     background-color:blanchedalmond;
-    width: 400px;
-    height: 600px;
+    width: 450px;
+    height: 700px;
     font-family: 'Ma Zhan Sheng';
     display:flex;
     flex-direction:column;
@@ -33,10 +33,15 @@
     z-index:0;
 }
 
+.top-buttons{
+    display:flex;
+    gap:10px;
+}
+
 .decorative-frame{
     margin:0;
     height:20%;
-    top: 130px;
+    top: 150px;
     right: 20px;
     position:absolute;
     z-index:0;
@@ -76,31 +81,59 @@
 
 .poem-display{
     margin-top: 80px;
+    width:90%;
     z-index:1;
 }
 
 .poem-body{
     width:100%;
     height:100%;
+    margin-top:50px;
+    margin-left:20px;
+    margin-bottom:20px;
     z-index:100;
 }
 
+.poem-title{
+    width:80%; 
+    font-size:1.9rem;
+}
+
 .poem-poet{
-    font-size:1.6rem;
+    width: 80%;
+    font-size:1.2rem;
 }
 
 .poem-dynasty{
+    width: 80%;
     font-size:1rem;
 }
 
-/*actual poem content*/
+hr {
+    border: none;  
+    margin:0;          
+    height: 1px;  
+    width:80%;           
+    background-color: black;
+}
+
+
+/*actual poem content; the p tag*/
 .poem-body p {
     width: 80%;
-    margin:0 auto; /*horizontal center*/
     margin-top: 30px;
     margin-bottom: 30px;
     white-space: pre-line; /*render \n from json as visible line breaks*/
     font-size: 1.4rem;
+}
+
+
+.features {
+    display:flex;
+    flex-direction: column;
+    gap:20px;
+    align-items: flex-start; /*left-align children*/
+    margin-left:20px;
 }
 
 .editing-fields{
@@ -116,23 +149,34 @@
     font-size: 1.4rem;
 }
 
-.editing-buttons{
-    display:flex;
-    gap:10px;
+.bottom-buttons{
+    margin-top:50px;
 }
 
 .editing-button{
-    width:70px;
-    height:30px;
     padding:auto 5px;
     font-size:0.7rem;
     font-family:'Inknut Antiqua';
     cursor:pointer;
 }
 
-.features{
-    display:flex;
-    gap:20px;
+.translation p{
+    font-family:'Inknut Antiqua';
+    font-size:1rem;
+    white-space: pre-line;
+}
+
+.translate-button{
+    border-radius: 5px;
+    font-size: 1rem;
+    font-family:'Inknut Antiqua';
+    transition: transform 0.2s ease-in-out;
+    background: linear-gradient(135deg, #fff176, #fbc02d);
+}
+
+.translate-button:hover {
+    transform: scale(1.1);
+    text-shadow: 0 0 4px rgba(255, 255, 255, 0.4);
 }
 
 .controls{
