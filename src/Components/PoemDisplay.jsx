@@ -5,7 +5,7 @@ import useFavorites from '../Hooks/useFavorites' //like useState etc. but your o
 import Frame from '../assets/ChineseFrame.png'
 
 //take poem and onClose from ExplorePage as props
-function PoemDisplay ({ poem, onClose, onUpdate, onDelete, onAllowUpdateAndDelete = false }) {
+function PoemDisplay ({ poem, onClose, onUpdate, onDelete, onAllowUpdateAndDelete = false, onTranslate }) {
 
     const { isFavorite, removeFavorite, addFavorite } = useFavorites(); 
 
@@ -98,6 +98,10 @@ function PoemDisplay ({ poem, onClose, onUpdate, onDelete, onAllowUpdateAndDelet
                         <textarea   name = "content" 
                                     value = {editedPoem.content}
                                     onChange = {handleEdit}/>
+                        <label htmlFor="translation">Translation:</label> 
+                        <textarea   name = "translation" 
+                                    value = {editedPoem.translation}
+                                    onChange = {handleEdit}/>
 
                         <div className = "editing-buttons">
                             <button className = "editing-button" onClick = {handleSave}>Save</button>
@@ -110,6 +114,7 @@ function PoemDisplay ({ poem, onClose, onUpdate, onDelete, onAllowUpdateAndDelet
                     ): (
 
                     <div className = "poem-body">
+
                         <h1 className = "poem-title">{poem.title}</h1>
                         <h2 className = "poem-poet">{poem.poet}</h2>
                         <h2 className = "poem-dynasty">{poem.dynasty}</h2>
@@ -131,8 +136,21 @@ function PoemDisplay ({ poem, onClose, onUpdate, onDelete, onAllowUpdateAndDelet
                                 Delete Poem
                             </button>
                         </div>)
-
                         }
+
+                        <div className = "translation">
+                            {poem.translation ? (
+                                <div>
+                                    <h2>Translation</h2>
+                                    <p>{poem.translation}</p>
+                                </div>
+                            ) : (
+                                <button className = "translate-button" onClick = {() => onTranslate(poem.id)}>
+                                    Translate Poem
+                                </button>
+                            )}
+                        </div>
+
                      </div>
                      
                     )}

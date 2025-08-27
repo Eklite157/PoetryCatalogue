@@ -29,7 +29,7 @@ function ExplorePage ({ poems, setPoems }) {
         poet: '',
         poet_en: '',
         dynasty: '',
-        content:''
+        content: ''
     });
 
 
@@ -123,7 +123,7 @@ function ExplorePage ({ poems, setPoems }) {
         }
     }
 
-    
+    //adds to database
     const handlePost = async(newPoem) => {
 
         try {
@@ -153,8 +153,8 @@ function ExplorePage ({ poems, setPoems }) {
                 content: ''
             });
 
-            //re-render UI
-            setPoems(prev => [...prev, newPoem]);
+            //re-render UI (savedPoem has id whereas newPoem doesn't!)
+            setPoems(prev => [...prev, savedPoem]);
 
             //close the AddPoem window
             setIsCreating(false);
@@ -162,6 +162,35 @@ function ExplorePage ({ poems, setPoems }) {
         } catch (error) {
             showError("Non-server error occurred.");
         }
+    }
+
+    const handleTranslate = async(poemID) => {
+        try {
+
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/poem/translate/${poemID}`, {
+                method:'PUT'
+            })
+            
+            if (!response.ok) {
+                const errorText = await response.text();
+                showError(`Translating poem failed: ${errorText}`);
+                return;
+            }
+
+            const translatedPoem = await response.json();
+
+            //update local array of poems, replacing old poem with new and keeping index in array
+            setPoems(prev=>prev.map((p) => (p.id === translatedPoem.id ? translatedPoem : p)))
+                
+
+            //display with translation
+            setSelectedPoem(translatedPoem);
+
+
+        } catch (error) {
+            showError("Non-server error occurred.");
+        }
+
     }
 
 
@@ -200,7 +229,8 @@ function ExplorePage ({ poems, setPoems }) {
                                 onClose = {() =>setSelectedPoem(null)}
                                 onUpdate = {handleUpdate}
                                 onDelete = {handleDelete}
-                                onAllowUpdateAndDelete={true}/>
+                                onAllowUpdateAndDelete={true}
+                                onTranslate = {handleTranslate}/>
 
                 
                 <AddPoemCard    isCreating = {isCreating} 
