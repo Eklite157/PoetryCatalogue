@@ -72,10 +72,10 @@ function ExplorePage ({ poems, setPoems }) {
     
 
     //deletes poem from database
-    const handleDelete = async (id) => {
+    const handleDelete = async (poemID) => {
         try {
             //delete poem from database
-            await fetch(`${import.meta.env.VITE_API_URL}/api/v1/poem/${id}`, {
+            await fetch(`${import.meta.env.VITE_API_URL}/api/v1/poem/${poemID}`, {
                 method:'DELETE'
             });
 

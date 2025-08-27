@@ -120,8 +120,8 @@ function PoemDisplay ({ poem, onClose, onUpdate, onDelete, onAllowUpdateAndDelet
                         <h2 className = "poem-dynasty">{poem.dynasty}</h2>
                         <p className = "poem-content">{poem.content}</p>
 
-
-                        {onAllowUpdateAndDelete && (
+                        <div className = "features">
+                            {onAllowUpdateAndDelete && (
                             <div className = "controls">
                             <button className = "edit-button" 
                                 onClick = {() => {
@@ -135,23 +135,24 @@ function PoemDisplay ({ poem, onClose, onUpdate, onDelete, onAllowUpdateAndDelet
                             <button className = "delete-button" onClick = {() => onDelete(poem.id)}>
                                 Delete Poem
                             </button>
-                        </div>)
-                        }
+                            </div>)
+                            }
 
-                        <div className = "translation">
-                            {poem.translation ? (
+                            <div className = "translation">
+                                {poem.translation ? (
                                 <div>
                                     <h2>Translation</h2>
                                     <p>{poem.translation}</p>
                                 </div>
-                            ) : (
+                                ) : (
                                 <button className = "translate-button" onClick = {() => onTranslate(poem.id)}>
                                     Translate Poem
                                 </button>
-                            )}
+                                )}
+                            </div>
                         </div>
 
-                     </div>
+                    </div>
                      
                     )}
 
