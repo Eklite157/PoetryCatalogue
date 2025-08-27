@@ -5,7 +5,7 @@ import useFavorites from '../Hooks/useFavorites' //like useState etc. but your o
 import Frame from '../assets/ChineseFrame.png'
 
 //take poem and onClose from ExplorePage as props
-function PoemDisplay ({ poem, onClose, onUpdate, onDelete, onAllowUpdateAndDelete = false, onTranslate }) {
+function PoemDisplay ({ poem, onClose, onUpdate, onDelete, onAllowUpdateAndDelete = false, onTranslate, loading }) {
 
     const { isFavorite, removeFavorite, addFavorite } = useFavorites(); 
 
@@ -159,8 +159,8 @@ function PoemDisplay ({ poem, onClose, onUpdate, onDelete, onAllowUpdateAndDelet
                                     <p>{poem.translation}</p>
                                 </div>
                                 ) : (
-                                <button className = "translate-button" onClick = {() => onTranslate(poem.id)}>
-                                    Translate Poem
+                                <button className = "translate-button" onClick = {() => onTranslate(poem.id)} disabled={loading}>
+                                    {loading ? "Translating...": "Translate Poem"}
                                 </button>
                                 )}
                             </div>

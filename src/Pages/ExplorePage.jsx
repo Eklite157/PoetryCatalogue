@@ -23,6 +23,10 @@ function ExplorePage ({ poems, setPoems }) {
     //for adding to database feature
     const [isCreating, setIsCreating] = useState(false);
 
+    //for loading symbol when calling Gemini
+    const [loading, setLoading] = useState(false);
+
+
      //to temporarily store state of fields to be added
      const [newPoem, setNewPoem] = useState({
         title: '',
@@ -166,6 +170,7 @@ function ExplorePage ({ poems, setPoems }) {
 
     const handleTranslate = async(poemID) => {
         try {
+            setLoading(true); //start loading
 
             const response = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/poem/translate/${poemID}`, {
                 method:'PUT'
@@ -189,6 +194,8 @@ function ExplorePage ({ poems, setPoems }) {
 
         } catch (error) {
             showError("Non-server error occurred.");
+        } finally {
+            setLoading(false); //stop loading
         }
 
     }
@@ -230,7 +237,8 @@ function ExplorePage ({ poems, setPoems }) {
                                 onUpdate = {handleUpdate}
                                 onDelete = {handleDelete}
                                 onAllowUpdateAndDelete={true}
-                                onTranslate = {handleTranslate}/>
+                                onTranslate = {handleTranslate}
+                                loading = {loading}/>
 
                 
                 <AddPoemCard    isCreating = {isCreating} 
