@@ -23,7 +23,7 @@ function ExplorePage ({ poems, setPoems }) {
     //for adding to database feature
     const [isCreating, setIsCreating] = useState(false);
 
-    //for loading symbol when calling Gemini
+    //for loading text when calling Gemini
     const [loading, setLoading] = useState(false);
 
 

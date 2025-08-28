@@ -12,7 +12,43 @@ function FavoritesPage () {
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedPoem, setSelectedPoem] = useState(null);
 
-    const { favorites } = useFavorites();
+    const { favorites, addFavorite, removeFavorite } = useFavorites();
+
+
+    //for loading text when calling Gemini
+    const [loading, setLoading] = useState(false);
+
+    const handleTranslate = async(poemID) => {
+        try {
+            setLoading(true); //start loading
+
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/poem/translate/${poemID}`, {
+                method:'PUT'
+            })
+            
+            if (!response.ok) {
+                const errorText = await response.text();
+                showError(`Translating poem failed: ${errorText}`);
+                return;
+            }
+
+            const translatedPoem = await response.json();
+
+            //update favorites list: remove old and add new poem with translation
+            removeFavorite(poemID);
+            addFavorite(translatedPoem);
+
+            //display with translation
+            setSelectedPoem(translatedPoem);
+
+
+        } catch (error) {
+            showError("Non-server error occurred.");
+        } finally {
+            setLoading(false); //stop loading
+        }
+
+    }
 
     return (
         <div className = "favorites-page">
@@ -44,11 +80,10 @@ function FavoritesPage () {
                                 favorites.map((p) => 
                                     <PoemCard poem = {p} onClick = {() => setSelectedPoem(p)}/>)
                                 )
-                    }    
-                        
+                    }        
                 </div>
 
-                <PoemDisplay poem = {selectedPoem} onClose = {() =>setSelectedPoem(null)}/>
+                <PoemDisplay poem = {selectedPoem} onClose = {() =>setSelectedPoem(null)} onTranslate = {handleTranslate} loading = {loading}/>
             </div>
         </div>
     )

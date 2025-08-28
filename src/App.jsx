@@ -17,7 +17,7 @@ function App() {
 
     //GET: fetch all poems from backend once component loads
     //good to useEffect to do this so it only runs once when mounted
-    //use async so th rest of React app still runs while useEffect is awaiting promise
+    //use async so the rest of React app still runs while useEffect is awaiting promise
     useEffect(() => {
 
         const fetchPoems = async() => {
