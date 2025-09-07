@@ -7,7 +7,7 @@ import PoemDisplay from '../Components/PoemDisplay'
 
 
 
-function FavoritesPage () {
+function FavoritesPage ({ refetchPoems }) {
 
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedPoem, setSelectedPoem] = useState(null);
@@ -40,6 +40,10 @@ function FavoritesPage () {
 
             //display with translation
             setSelectedPoem(translatedPoem);
+
+            if (refetchPoems){
+                refetchPoems();
+            }
 
 
         } catch (error) {

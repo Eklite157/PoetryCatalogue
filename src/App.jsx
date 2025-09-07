@@ -18,26 +18,25 @@ function App() {
     //GET: fetch all poems from backend once component loads
     //good to useEffect to do this so it only runs once when mounted
     //use async so the rest of React app still runs while useEffect is awaiting promise
-    useEffect(() => {
 
-        const fetchPoems = async() => {
-            try {
-                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/poem`);
+    const fetchPoems = async() => {
+        try {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/poem`);
 
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-
-                const data = await response.json();// turns JSON response body into array of JavaScriptobjects
-                setPoems(data); // replaces poems array with this array 
-
-            } catch (error) {
-                console.error("Error fetching poems:", error);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
             }
-        }
 
+            const data = await response.json();// turns JSON response body into array of JavaScriptobjects
+            setPoems(data); // replaces poems array with this array 
+
+        } catch (error) {
+            console.error("Error fetching poems:", error);
+        }
+    }
+
+    useEffect(() => {
         fetchPoems();
-   
     }, []);
 
     return(
@@ -49,7 +48,8 @@ function App() {
                                     poems={poems}/>}/>
 
             <Route  path = "/favorites" 
-                    element = {<FavoritesPage/>}/>
+                    element = {<FavoritesPage 
+                                    refetchPoems={fetchPoems}/>}/>
 
             <Route  path = "/explore" 
                     element = {<ExplorePage 
